@@ -87,4 +87,16 @@ public class MessageService {
             throw new ErrorCodeException("Line發送訊息異常", ErrorCodeEnum.LINE_SEND_MESSAGE_ERROR);
         }
     }
+
+    public List<Message> getMessagesByUserId(String userId) {
+
+        List<Message> messageList = messageRepository.findMessageByUserId(userId);
+
+        if (CollectionUtils.isEmpty(messageList)) {
+            log.error("查無此使用者訊息: {}", userId);
+            throw new ErrorCodeException("查無此使用者訊息", ErrorCodeEnum.USER_MESSAGE_NOT_FOUND);
+        }
+
+        return messageList;
+    }
 }

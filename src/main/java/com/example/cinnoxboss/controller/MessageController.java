@@ -25,4 +25,9 @@ public class MessageController {
     public List<Message> sendMessage(@RequestBody MessageRequestBodyForm messageRequestBodyForm) {
         return messageService.sendMessage(messageRequestBodyForm);
     }
+
+    @GetMapping("/users/{userId}")
+    public List<Message> getMessagesByUserId(@PathVariable String userId) {
+        return messageService.getMessagesByUserId(userId);
+    }
 }
